@@ -1,7 +1,7 @@
 LINQPad Scripts
 ===============
 
-A repository for my public LINQPad scripts.
+A few LINQPad scripts.
 
 
 LICENSE
