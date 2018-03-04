@@ -17,7 +17,7 @@ COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "App.dll"]
 
 # Run the following command to build and create the runtime
-# docker build --target build-env -t app-builder:latest . && docker build --target runtime-env -t app-runtime:latest .
+# docker build --target build-env -t aspnetcore-builder:2.0 . && docker build --target runtime-env -t rates-api-runtime:latest .
 
 # Run the container
-# docker run -d -p 5000:5000 --name app app-runtime:latest
+# docker run -d -p 5000:5000 --name rates-api rates-api-runtime:latest
