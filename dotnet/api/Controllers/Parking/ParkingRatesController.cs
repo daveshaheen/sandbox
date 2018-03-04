@@ -65,6 +65,7 @@ namespace App.Controllers.Parking
 
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("controller", "Unavailable");
                 return BadRequest(GetModelStateErrors(ModelState));
             }
 

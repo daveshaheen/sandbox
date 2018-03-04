@@ -6,7 +6,22 @@ namespace App
 {
     /// <summary>
     ///     The Program class.
-    ///     <para>Provides the entry point for the Rates Web API application.</para>
+    ///     <para>
+    ///         Provides the entry point for the Rates Web API application.
+    ///     </para>
+    ///     <para>
+    ///         Currently there is only one route that can be can be accessed at: http://*::5000/api/{version}/parking/rates.{format}?start={start}&amp;end={end}.
+    ///     </para>
+    ///     <para>
+    ///         The {version} can be anything right now. It's there so it's available incase of future updates.
+    ///     </para>
+    ///     <para>
+    ///         The .{format?} is optional and can either be xml, json, or left off.
+    ///     </para>
+    ///     <para>
+    ///         The {start} and {end} must be on the same day and in ISO 8601 format. For example <c>start=2015-07-01T07:00:00Z</c> and <c>end=2015-07-01T12:00:00Z</c>.
+    ///         The endpoint will either return a price as a 32 bit int, a bad request, or a 404 with the message unavailable.
+    ///     </para>
     /// </summary>
     public class Program
     {

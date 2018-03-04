@@ -13,7 +13,7 @@ namespace App.Services
         /// </summary>
         /// <param name="start">The start date time offset.</param>
         /// <param name="end">The end date time offset.</param>
-        /// <returns>The price.</returns>
+        /// <returns>Returns the price.</returns>
         decimal? GetPrice(DateTimeOffset start, DateTimeOffset end);
     }
 }

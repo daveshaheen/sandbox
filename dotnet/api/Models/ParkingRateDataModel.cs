@@ -33,7 +33,7 @@ namespace App.Models
         ///     The EndTime property.
         ///     <para>Gets or sets the end time.</para>
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns the end time.</returns>
         public TimeSpan EndTime { get; set; }
     }
 }
