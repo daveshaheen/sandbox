@@ -7,13 +7,13 @@
             "type": "shell",
             "args": [
                 "build",
-                "${workspaceFolder}/App.csproj",
+                "${workspaceFolder}/App/App.csproj",
                 "-c",
                 "Debug",
                 "&&",
                 "cp",
-                "${workspaceFolder}/bin/Debug/App.xml",
-                "${workspaceFolder}/wwwroot/docs/App.xml"
+                "${workspaceFolder}/App/bin/Debug/App.xml",
+                "${workspaceFolder}/App/wwwroot/docs/App.xml"
             ],
             "problemMatcher": "$msCompile",
             "group": {
@@ -27,13 +27,13 @@
             "type": "shell",
             "args": [
                 "build",
-                "${workspaceFolder}/App.csproj",
+                "${workspaceFolder}/App/App.csproj",
                 "-c",
                 "Release",
                 "&&",
                 "cp",
-                "${workspaceFolder}/bin/Release/App.xml",
-                "${workspaceFolder}/wwwroot/docs/App.xml"
+                "${workspaceFolder}/App/bin/Release/App.xml",
+                "${workspaceFolder}/App/wwwroot/docs/App.xml"
             ],
             "problemMatcher": "$msCompile",
             "group": "build"

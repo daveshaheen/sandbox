@@ -1,6 +1,8 @@
 # Sandbox - Parking Rates Web API
 
-Pull down the project and if you have docker installed run the following command to build and create the runtime.
+Pull down the project and cd to the App directory.
+
+If you have docker installed run the following command to build and create the runtime.
 
     docker build --target build-env -t aspnetcore-builder:2.0 . && docker build --target runtime-env -t rates-api-runtime:latest .
 
@@ -10,7 +12,7 @@ Run the container and navigate to 127.0.0.1:5000 or [::1]:5000.
 
 Logs are stored in Docker /app/logs directory on a persistent volume.
 
-If you have dotnet installed the run the following from the csproj directory.
+If you have dotnet installed the run the following from the App directory.
 
     dotnet restore
 
@@ -18,4 +20,4 @@ If you have dotnet installed the run the following from the csproj directory.
 
     dotnet run
 
-See the swagger documentation for details.
+Navigate to 127.0.0.1:5000 or [::1]:5000 and see the swagger documentation for details.
