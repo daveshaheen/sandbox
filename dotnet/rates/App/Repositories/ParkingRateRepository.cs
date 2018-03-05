@@ -54,7 +54,7 @@ namespace App.Repositories
             {
                 Rates = GetDataFromString(data)
                         .Where(r => r.Days.Any(d => d == dayOfWeek))
-                        .Where(r => r.StartTime <= startTime && r.EndTime > endTime)
+                        .Where(r => r.StartTime <= startTime && r.EndTime >= endTime)
                         .ToList()
             };
 

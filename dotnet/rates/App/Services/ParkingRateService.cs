@@ -25,17 +25,17 @@ namespace App.Services
         ///     GetPrice
         ///     <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies any needed logic.</para>
         /// </summary>
+        /// <param name="dayOfWeek">The day of the week.</param>
         /// <param name="start">The start date time offset.</param>
         /// <param name="end">The end date time offset.</param>
         /// <returns>Returns the price.</returns>
-        public decimal? GetPrice(DateTimeOffset start, DateTimeOffset end)
+        public decimal? GetPrice(DayOfWeek dayOfWeek, TimeSpan start, TimeSpan end)
         {
-            if (DateTime.Compare(start.Date, end.Date) != 0)
-            {
+            if (start > end) {
                 return null;
             }
 
-            var rates = _parkingRateRepository.GetParkingRatesData(start.DayOfWeek, start.TimeOfDay, end.TimeOfDay).Rates;
+            var rates = _parkingRateRepository.GetParkingRatesData(dayOfWeek, start, end).Rates;
 
             if (rates.Count() == 0)
             {
@@ -44,7 +44,7 @@ namespace App.Services
 
             if (rates.Count() > 1)
             {
-                throw new DataMisalignedException("The data should not overlap.");
+                throw new DataMisalignedException("Rates overlap.");
             }
 
             return rates.Select(r => r.Price).FirstOrDefault();

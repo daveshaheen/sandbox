@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using App.Models;
 using App.Services;
+using App.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -46,7 +47,7 @@ namespace App.Controllers.Parking
             [FromQuery, Required(ErrorMessage = "Start query string parameter is required.")] string start,
             [FromQuery, Required(ErrorMessage = "End query string parameter is required.")] string end)
         {
-            var UTC8601Formats = new[] { "yyyyMMddTHH:mm:ssZ", "yyyy-MM-ddTHH:mm:ssZ" };
+            var UTC8601Formats = DateTimeFormatUtility.ISO8601AcceptedFormats;
 
             if (string.IsNullOrWhiteSpace(start) || string.IsNullOrWhiteSpace(end))
             {
@@ -65,13 +66,19 @@ namespace App.Controllers.Parking
                 return BadRequest(GetModelStateErrors(ModelState));
             }
 
+            if (DateTime.Compare(startUTC8601.Date, endUTC8601.Date) != 0)
+            {
+                ModelState.AddModelError("end", "Start and end query string parameter are not on the same day.");
+                return BadRequest(GetModelStateErrors(ModelState));
+            }
+
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("controller", "Unavailable");
                 return BadRequest(GetModelStateErrors(ModelState));
             }
 
-            var price = _parkingRateService.GetPrice(startUTC8601, endUTC8601);
+            var price = _parkingRateService.GetPrice(startUTC8601.DayOfWeek, startUTC8601.TimeOfDay, endUTC8601.TimeOfDay);
             if (price == null)
             {
                 ModelState.AddModelError("controller", "Unavailable");

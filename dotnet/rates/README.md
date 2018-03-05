@@ -4,7 +4,8 @@ Pull down the project and cd to the App directory.
 
 If you have docker installed run the following command to build and create the runtime.
 
-    docker build --target build-env -t aspnetcore-builder:2.0 . && docker build --target runtime-env -t rates-api-runtime:latest .
+    docker build --target build-env -t aspnetcore-builder:2.0 . && \
+    docker build --target runtime-env -t rates-api-runtime:latest .
 
 Run the container and navigate to 127.0.0.1:5000 or [::1]:5000.
 
@@ -21,3 +22,13 @@ If you have dotnet installed the run the following from the App directory.
     dotnet run
 
 Navigate to 127.0.0.1:5000 or [::1]:5000 and see the swagger documentation for details.
+
+To clean up the docker container and images run the following command. Note: this will delete the container, volume, images, and any dangling images on your system.
+
+    docker rm -v rates-api && docker rmi rates-api-runtime && docker rmi aspnetcore-builder && \
+    docker images | grep -v REPOSITORY | grep none | awk '{print $3}' | xargs -L1 docker rmi
+
+## Todo
+
+  1. Break up the project into a data repository, a service layer for business or domain logic, and a project to support the view.
+  2. Add gRPC support and clean up response.

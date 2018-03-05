@@ -37,6 +37,20 @@
             ],
             "problemMatcher": "$msCompile",
             "group": "build"
+        },
+        {
+            "label": "test",
+            "command": "TERM=xterm dotnet",
+            "type": "shell",
+            "args": [
+                "test",
+                "${workspaceFolder}/Tests/Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group":{
+                "kind": "test",
+                "isDefault": true
+            }
         }
     ]
 }
