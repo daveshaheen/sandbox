@@ -4,36 +4,32 @@ using System.Collections.Generic;
 namespace App.Models
 {
     /// <summary>
-    ///     The ParkingRateDataModel class.
+    ///     The parking rate data model.
     /// </summary>
     public class ParkingRateDataModel
     {
         /// <summary>
-        ///     The Days property.
-        ///     <para>Gets or sets the Days property.</para>
+        ///     Gets or sets the Days property.
         /// </summary>
         /// <value>Returns an enumerable of days.</value>
         public IEnumerable<DayOfWeek> Days { get; set; }
 
         /// <summary>
-        ///     The Price property.
-        ///     <para>Gets or sets the Price property.</para>
+        ///     Gets or sets the Price property.
         /// </summary>
-        /// <returns>Returns the parking rate price.</returns>
+        /// <value>Returns the parking rate price.</value>
         public decimal Price { get; set; }
 
         /// <summary>
-        ///     The StartTime property.
-        ///     <para>Gets or sets the start time.</para>
+        ///     Gets or sets the start time.
         /// </summary>
-        /// <returns>Returns the start time.</returns>
+        /// <value>Returns the start time.</value>
         public TimeSpan StartTime { get; set; }
 
         /// <summary>
-        ///     The EndTime property.
-        ///     <para>Gets or sets the end time.</para>
+        ///     Gets or sets the end time.
         /// </summary>
-        /// <returns>Returns the end time.</returns>
+        /// <value>Returns the end time.</value>
         public TimeSpan EndTime { get; set; }
     }
 }

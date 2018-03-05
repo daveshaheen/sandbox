@@ -29,15 +29,17 @@ namespace App.Controllers.Parking
         }
 
         /// <summary>
-        ///     The Get method.
-        ///     <para>
-        ///         HttpGet endpoint to retrieve parking rate information. Expects ISO 8601 start and end query string parameters.
-        ///         Formats the response based on the Accept header or using a format filter, i.e. rates.json or rates.xml.
-        ///     </para>
+        ///     Get parking rates based on a start and end ISO 8601 date formats.
         /// </summary>
-        /// <param name="start">An ISO 8601 start date and time.</param>
-        /// <param name="end">An ISO 8601 end date and time.</param>
-        /// <returns>Returns an IActionResult as either json or xml with the requested parking rate information, a bad request if the parameters are invalid, or not found.</returns>
+        /// <remarks>
+        ///     Formats the response based on the Accept header or using a format filter, i.e. rates.json or rates.xml.
+        /// </remarks>
+        /// <param name="start">A required start date and time in ISO 8601 format.</param>
+        /// <param name="end">A required end date and time in ISO 8601 format.</param>
+        /// <returns>Returns an IActionResult. </returns>
+        /// <response code="200">Response code of 200 returns the parking price. </response>
+        /// <response code="400">Response code of 400 returns Bad Request with error messages if there are errors in the query. </response>
+        /// <response code="404">Response code of 404 unavailable returns if there is no data available. </response>
         [HttpGet("rates")]
         [HttpGet("rates.{format}"), FormatFilter]
         public IActionResult Get(

@@ -1,13 +1,12 @@
 namespace App.Models
 {
     /// <summary>
-    ///     The ParkingRateViewModel class.
+    ///     The parking rate view model.
     /// </summary>
     public class ParkingRateViewModel
     {
         /// <summary>
-        ///     The Price property.
-        ///     <para>The price returned by the API.</para>
+        ///     Gets or sets a price.
         /// </summary>
         /// <value>Returns a price.</value>
         public string Price { get; set; }

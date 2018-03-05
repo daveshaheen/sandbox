@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>App</name>
+    </assembly>
+    <members>
+        <member name="T:App.Controllers.BaseController">
+            <summary>
+                The BaseContoller
+                <para>An abstract base class for controllers to inherit from.</para>
+            </summary>
+            <remarks>Inherits from <see cref="T:Microsoft.AspNetCore.Mvc.Controller" /></remarks>
+        </member>
+        <member name="T:App.Controllers.Parking.ParkingRatesController">
+            <summary>
+                The ParkingRatesController class.
+                <para>Contains the methods to return a view of parking rates based on the content request.</para>
+            </summary>
+            <remarks>Inherits from <see cref="T:App.Controllers.BaseController" /></remarks>
+        </member>
+        <member name="M:App.Controllers.Parking.ParkingRatesController.#ctor(App.Services.IParkingRateService)">
+            <summary>
+                The ParkingRatesController constructor.
+            </summary>
+            <param name="parkingRateService">A parking rate service.</param>
+        </member>
+        <member name="M:App.Controllers.Parking.ParkingRatesController.Get(System.String,System.String)">
+            <summary>
+                Get parking rates based on a start and end ISO 8601 date formats.
+            </summary>
+            <remarks>
+                Formats the response based on the Accept header or using a format filter, i.e. rates.json or rates.xml.
+            </remarks>
+            <param name="start">A required start date and time in ISO 8601 format.</param>
+            <param name="end">A required end date and time in ISO 8601 format.</param>
+            <returns>Returns an IActionResult. </returns>
+            <response code="200">Response code of 200 returns the parking price. </response>
+            <response code="400">Response code of 400 returns Bad Request with error messages if there are errors in the query. </response>
+            <response code="404">Response code of 404 unavailable returns if there is no data available. </response>
+        </member>
+        <member name="T:App.Models.ParkingRateDataModel">
+            <summary>
+                The parking rate data model.
+            </summary>
+        </member>
+        <member name="P:App.Models.ParkingRateDataModel.Days">
+            <summary>
+                Gets or sets the Days property.
+            </summary>
+            <value>Returns an enumerable of days.</value>
+        </member>
+        <member name="P:App.Models.ParkingRateDataModel.Price">
+            <summary>
+                Gets or sets the Price property.
+            </summary>
+            <value>Returns the parking rate price.</value>
+        </member>
+        <member name="P:App.Models.ParkingRateDataModel.StartTime">
+            <summary>
+                Gets or sets the start time.
+            </summary>
+            <value>Returns the start time.</value>
+        </member>
+        <member name="P:App.Models.ParkingRateDataModel.EndTime">
+            <summary>
+                Gets or sets the end time.
+            </summary>
+            <value>Returns the end time.</value>
+        </member>
+        <member name="T:App.Models.ParkingRatesDataModel">
+            <summary>
+                The parking rates data model.
+            </summary>
+        </member>
+        <member name="P:App.Models.ParkingRatesDataModel.Rates">
+            <summary>
+                Gets or sets the rates.
+            </summary>
+            <value>Returns an enumerable of rates.</value>
+        </member>
+        <member name="T:App.Models.ParkingRateViewModel">
+            <summary>
+                The parking rate view model.
+            </summary>
+        </member>
+        <member name="P:App.Models.ParkingRateViewModel.Price">
+            <summary>
+                Gets or sets a price.
+            </summary>
+            <value>Returns a price.</value>
+        </member>
+        <member name="T:App.Program">
+            <summary>
+                The Program class.
+                <para>
+                    Provides the entry point for the Rates Web API application.
+                </para>
+                <para>
+                    Currently there is only one route that can be can be accessed at: http://*::5000/api/{version}/parking/rates.{format}?start={start}&amp;end={end}.
+                </para>
+                <para>
+                    The {version} can be anything right now. It's there so it's available incase of future updates.
+                </para>
+                <para>
+                    The .{format?} is optional and can either be xml, json, or left off.
+                </para>
+                <para>
+                    The {start} and {end} must be on the same day and in ISO 8601 format. For example <c>start=2015-07-01T07:00:00Z</c> and <c>end=2015-07-01T12:00:00Z</c>.
+                    The endpoint will either return a price as a 32 bit int, a bad request, or a 404 with the message unavailable.
+                </para>
+            </summary>
+        </member>
+        <member name="M:App.Program.Main(System.String[])">
+            <summary>
+                The Main method.
+                <para>The main entry point for the Rates Web API application.</para>
+            </summary>
+            <param name="args">The command line arguments.</param>
+        </member>
+        <member name="M:App.Program.BuildWebHost(System.String[])">
+            <summary>
+                The BuildWebHost method.
+                <para>
+                    A static method to configure a web host.
+                </para>
+                <para>
+                    The web host is configured to use the Kestrel web server and listen on any IPV4 and any IPV6 address on port 5000.
+                    The listening address and port can be over written with environment variables prefixed with DOTNET_ or with command line parameters.
+                </para>
+                <para>
+                    Environment variable usage: DOTNET_URLS=http://*:5000
+                </para>
+                <para>
+                    Command line usage. dotnet run --urls http://*:5000
+                </para>
+                <para>
+                    The maximum number of connections is unlimited (null) by default.
+                    The default maximum request body size is 30,000,000 bytes, which is approximately 28.6MB.
+                    The default minimum rate is 240 bytes/second, with a 5 second grace period.
+                </para>
+                <para>https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?tabs=aspnetcore2x</para>
+            </summary>
+            <param name="args">The command line arguments.</param>
+            <returns>Returns <see cref="T:Microsoft.AspNetCore.Hosting.IWebHost" />.</returns>
+        </member>
+        <member name="T:App.Repositories.IParkingRateRepository">
+            <summary>
+                The IParkingRateRepository interface.
+                <para>Contains the contract for the methods and properties needed to retrieve the data from the parking rate repository.</para>
+            </summary>
+        </member>
+        <member name="M:App.Repositories.IParkingRateRepository.GetParkingRatesData(System.DayOfWeek,System.TimeSpan,System.TimeSpan)">
+            <summary>
+                Gets the parking rates from the data repository.
+            </summary>
+            <param name="dayOfWeek">The day of the week.</param>
+            <param name="startTime">The start time.</param>
+            <param name="endTime">The end time.</param>
+            <returns>Returns the ParkingRatesDataModel</returns>
+        </member>
+        <member name="T:App.Repositories.ParkingRateRepository">
+            <summary>
+                The ParkingRateRepository class.
+                <para>Contains implementations for the methods and properties needed to retrieve the data from the parking rate repository.</para>
+            </summary>
+            <remarks>Implements <see cref="T:App.Repositories.IParkingRateRepository"/></remarks>
+        </member>
+        <member name="M:App.Repositories.ParkingRateRepository.GetParkingRatesData(System.DayOfWeek,System.TimeSpan,System.TimeSpan)">
+            <summary>
+                Gets the parking rates from the data repository.
+            </summary>
+            <param name="dayOfWeek">The day of the week.</param>
+            <param name="startTime">The start time.</param>
+            <param name="endTime">The end time.</param>
+            <returns>Returns the ParkingRatesDataModel</returns>
+        </member>
+        <member name="T:App.Services.IParkingRateService">
+            <summary>
+                The ParkingRateService interface.
+            </summary>
+        </member>
+        <member name="M:App.Services.IParkingRateService.GetPrice(System.DateTimeOffset,System.DateTimeOffset)">
+            <summary>
+                The GetPrice method.
+                <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies business logic.</para>
+            </summary>
+            <param name="start">The start date time offset.</param>
+            <param name="end">The end date time offset.</param>
+            <returns>Returns the price.</returns>
+        </member>
+        <member name="T:App.Services.ParkingRateService">
+            <summary>
+                The ParkingRateService class.
+            </summary>
+        </member>
+        <member name="M:App.Services.ParkingRateService.#ctor(App.Repositories.IParkingRateRepository)">
+            <summary>
+                ParkingRateService constructor.
+            </summary>
+            <param name="parkingRateRepository">A parking rate repository.</param>
+        </member>
+        <member name="M:App.Services.ParkingRateService.GetPrice(System.DateTimeOffset,System.DateTimeOffset)">
+            <summary>
+                The GetPrice method.
+                <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies business logic.</para>
+            </summary>
+            <param name="start">The start date time offset.</param>
+            <param name="end">The end date time offset.</param>
+            <returns>Returns the price.</returns>
+        </member>
+        <member name="T:App.Startup">
+            <summary>
+                The Startup class.
+                <para>Contains the startup methods for the application.</para>
+            </summary>
+        </member>
+        <member name="M:App.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+                The Startup class constructor.
+            </summary>
+            <param name="configuration">An application configuration.</param>
+        </member>
+        <member name="P:App.Startup.Configuration">
+            <summary>
+                Gets the Configuration property.
+            </summary>
+            <value>An application configuration.</value>
+        </member>
+        <member name="M:App.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                The ConfigureServices method.
+                <para>This method gets called by the runtime. Use this method to add services to the container.</para>
+            </summary>
+            <param name="services">A collection of services.</param>
+        </member>
+        <member name="M:App.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+                The Configure method.
+                <para>This method gets called by the runtime. Use this method to configure the HTTP request pipeline.</para>
+            </summary>
+            <param name="app">The application to configure.</param>
+            <param name="env">Information about the hosting environment.</param>
+        </member>
+    </members>
+</doc>

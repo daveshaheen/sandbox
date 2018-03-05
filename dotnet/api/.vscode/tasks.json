@@ -7,13 +7,36 @@
             "type": "shell",
             "args": [
                 "build",
-                "${workspaceFolder}/App.csproj"
+                "${workspaceFolder}/App.csproj",
+                "-c",
+                "Debug",
+                "&&",
+                "cp",
+                "${workspaceFolder}/bin/Debug/App.xml",
+                "${workspaceFolder}/wwwroot/docs/App.xml"
             ],
             "problemMatcher": "$msCompile",
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "build: release",
+            "command": "TERM=xterm dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "${workspaceFolder}/App.csproj",
+                "-c",
+                "Release",
+                "&&",
+                "cp",
+                "${workspaceFolder}/bin/Release/App.xml",
+                "${workspaceFolder}/wwwroot/docs/App.xml"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
         }
     ]
 }

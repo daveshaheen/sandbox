@@ -3,15 +3,14 @@ using System.Collections.Generic;
 namespace App.Models
 {
     /// <summary>
-    ///     The ParkingRatesDataModel class.
+    ///     The parking rates data model.
     /// </summary>
     public class ParkingRatesDataModel
     {
         /// <summary>
-        ///     The Rates property.
-        ///     <para>Gets or sets the rates.</para>
+        ///     Gets or sets the rates.
         /// </summary>
-        /// <returns>Returns an enumerable of rates.</returns>
+        /// <value>Returns an enumerable of rates.</value>
         public IEnumerable<ParkingRateDataModel> Rates { get; set; }
     }
 

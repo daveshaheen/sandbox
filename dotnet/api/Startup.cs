@@ -1,10 +1,11 @@
+using System.IO;
 using App.Repositories;
 using App.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace App
 {
@@ -14,6 +15,9 @@ namespace App
     /// </summary>
     public class Startup
     {
+        private const string DocsVersion = "v1";
+        private const string DocsName = "Parking Rates Web API";
+
         /// <summary>
         ///     The Startup class constructor.
         /// </summary>
@@ -36,6 +40,9 @@ namespace App
             services.AddTransient<IParkingRateService, ParkingRateService>();
             services.AddTransient<IParkingRateRepository, ParkingRateRepository>();
 
+            services.AddMvcCore()
+                .AddApiExplorer();
+
             services.AddMvc(options =>
             {
                 options.RespectBrowserAcceptHeader = true;
@@ -43,6 +50,17 @@ namespace App
             })
             .AddXmlSerializerFormatters()
             .AddXmlDataContractSerializerFormatters();
+
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc(DocsVersion, new Info
+                {
+                    Title = DocsName,
+                    Version = DocsVersion
+                });
+
+                s.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/docs/App.xml"));
+            });
         }
 
         /// <summary>
@@ -59,6 +77,12 @@ namespace App
             }
 
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.RoutePrefix = "";
+                s.SwaggerEndpoint($"/swagger/{DocsVersion}/swagger.json", DocsName);
+            });
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -59,6 +60,7 @@ namespace App
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseUrls("http://*:5000")
+                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(new ConfigurationBuilder()
                     .AddEnvironmentVariables(prefix: "DOTNET_")
                     .AddCommandLine(args)
