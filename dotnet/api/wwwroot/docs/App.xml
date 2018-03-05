@@ -165,6 +165,18 @@
             </summary>
             <remarks>Implements <see cref="T:App.Repositories.IParkingRateRepository"/></remarks>
         </member>
+        <member name="M:App.Repositories.ParkingRateRepository.#ctor(System.String)">
+            <summary>
+                Constructor for the parking rate repository.
+            </summary>
+            <param name="json">The data as a json string.</param>
+        </member>
+        <member name="M:App.Repositories.ParkingRateRepository.GetDataFromString(System.String)">
+            <summary>
+                Fills the ParkingRatesDataModel from a json string.
+            </summary>
+            <returns>Returns a ParkingRatesDataModel</returns>
+        </member>
         <member name="M:App.Repositories.ParkingRateRepository.GetParkingRatesData(System.DayOfWeek,System.TimeSpan,System.TimeSpan)">
             <summary>
                 Gets the parking rates from the data repository.

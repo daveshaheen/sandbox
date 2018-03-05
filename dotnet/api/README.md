@@ -8,6 +8,8 @@ Run the container and navigate to 127.0.0.1:5000 or [::1]:5000.
 
     docker run -d -p 5000:5000 --name rates-api rates-api-runtime:latest
 
+Logs are stored in Docker /app/logs directory on a persistent volume.
+
 If you have dotnet installed the run the following from the csproj directory.
 
     dotnet restore
