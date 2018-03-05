@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace App.Repositories
 {
     /// <summary>
-    ///     The ParkingRateRepository class.
+    ///     ParkingRateRepository
     ///     <para>Contains implementations for the methods and properties needed to retrieve the data from the parking rate repository.</para>
     /// </summary>
     /// <remarks>Implements <see cref="IParkingRateRepository"/></remarks>
@@ -43,10 +43,34 @@ namespace App.Repositories
         }
 
         /// <summary>
-        ///     Fills the ParkingRatesDataModel from a json string.
+        ///     Gets the parking rates from the data repository.
         /// </summary>
-        /// <returns>Returns a ParkingRatesDataModel</returns>
-        public IEnumerable<ParkingRateDataModel> GetDataFromString(string data)
+        /// <param name="dayOfWeek">The day of the week.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="endTime">The end time.</param>
+        /// <returns>Returns the ParkingRatesDataModel</returns>
+        public ParkingRatesDataModel GetParkingRatesData(DayOfWeek dayOfWeek, TimeSpan startTime, TimeSpan endTime) =>
+            new ParkingRatesDataModel
+            {
+                Rates = GetDataFromString(data)
+                        .Where(r => r.Days.Any(d => d == dayOfWeek))
+                        .Where(r => r.StartTime <= startTime && r.EndTime > endTime)
+                        .ToList()
+            };
+
+        private class Sample
+        {
+            public SampleData[] Rates { get; set; }
+        }
+
+        private class SampleData
+        {
+            public string Days { get; set; }
+            public string Times { get; set; }
+            public int Price { get; set; }
+        }
+
+        private IEnumerable<ParkingRateDataModel> GetDataFromString(string data)
         {
             var json = JsonConvert.DeserializeObject<Sample>(data);
 
@@ -77,34 +101,6 @@ namespace App.Repositories
             }
 
             return parkingRates;
-        }
-
-        /// <summary>
-        ///     Gets the parking rates from the data repository.
-        /// </summary>
-        /// <param name="dayOfWeek">The day of the week.</param>
-        /// <param name="startTime">The start time.</param>
-        /// <param name="endTime">The end time.</param>
-        /// <returns>Returns the ParkingRatesDataModel</returns>
-        public ParkingRatesDataModel GetParkingRatesData(DayOfWeek dayOfWeek, TimeSpan startTime, TimeSpan endTime) =>
-            new ParkingRatesDataModel
-            {
-                Rates = GetDataFromString(data)
-                        .Where(r => r.Days.Any(d => d == dayOfWeek))
-                        .Where(r => r.StartTime <= startTime && r.EndTime > endTime)
-                        .ToList()
-            };
-
-        private class Sample
-        {
-            public SampleData[] Rates { get; set; }
-        }
-
-        private class SampleData
-        {
-            public string Days { get; set; }
-            public string Times { get; set; }
-            public int Price { get; set; }
         }
 
         private TimeSpan GetTimeSpan(string time)

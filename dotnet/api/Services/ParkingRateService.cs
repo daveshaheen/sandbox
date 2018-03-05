@@ -5,7 +5,8 @@ using App.Repositories;
 namespace App.Services
 {
     /// <summary>
-    ///     The ParkingRateService class.
+    ///     ParkingRateService
+    ///     <para>Contains implementations for the methods and properties that handle the parking rates service logic.</para>
     /// </summary>
     public class ParkingRateService : IParkingRateService
     {
@@ -21,8 +22,8 @@ namespace App.Services
         }
 
         /// <summary>
-        ///     The GetPrice method.
-        ///     <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies business logic.</para>
+        ///     GetPrice
+        ///     <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies any needed logic.</para>
         /// </summary>
         /// <param name="start">The start date time offset.</param>
         /// <param name="end">The end date time offset.</param>

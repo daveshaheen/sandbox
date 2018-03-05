@@ -6,15 +6,15 @@
     <members>
         <member name="T:App.Controllers.BaseController">
             <summary>
-                The BaseContoller
+                BaseContoller
                 <para>An abstract base class for controllers to inherit from.</para>
             </summary>
             <remarks>Inherits from <see cref="T:Microsoft.AspNetCore.Mvc.Controller" /></remarks>
         </member>
         <member name="T:App.Controllers.Parking.ParkingRatesController">
             <summary>
-                The ParkingRatesController class.
-                <para>Contains the methods to return a view of parking rates based on the content request.</para>
+                ParkingRatesController
+                <para>Contains the methods to return a view of parking rates based on the accept header.</para>
             </summary>
             <remarks>Inherits from <see cref="T:App.Controllers.BaseController" /></remarks>
         </member>
@@ -145,8 +145,8 @@
         </member>
         <member name="T:App.Repositories.IParkingRateRepository">
             <summary>
-                The IParkingRateRepository interface.
-                <para>Contains the contract for the methods and properties needed to retrieve the data from the parking rate repository.</para>
+                IParkingRateRepository
+                <para>Contains the contract information for the methods and properties needed to retrieve the data from the parking rate repository.</para>
             </summary>
         </member>
         <member name="M:App.Repositories.IParkingRateRepository.GetParkingRatesData(System.DayOfWeek,System.TimeSpan,System.TimeSpan)">
@@ -160,7 +160,7 @@
         </member>
         <member name="T:App.Repositories.ParkingRateRepository">
             <summary>
-                The ParkingRateRepository class.
+                ParkingRateRepository
                 <para>Contains implementations for the methods and properties needed to retrieve the data from the parking rate repository.</para>
             </summary>
             <remarks>Implements <see cref="T:App.Repositories.IParkingRateRepository"/></remarks>
@@ -170,12 +170,6 @@
                 Constructor for the parking rate repository.
             </summary>
             <param name="json">The data as a json string.</param>
-        </member>
-        <member name="M:App.Repositories.ParkingRateRepository.GetDataFromString(System.String)">
-            <summary>
-                Fills the ParkingRatesDataModel from a json string.
-            </summary>
-            <returns>Returns a ParkingRatesDataModel</returns>
         </member>
         <member name="M:App.Repositories.ParkingRateRepository.GetParkingRatesData(System.DayOfWeek,System.TimeSpan,System.TimeSpan)">
             <summary>
@@ -188,7 +182,8 @@
         </member>
         <member name="T:App.Services.IParkingRateService">
             <summary>
-                The ParkingRateService interface.
+                IParkingRateService
+                <para>Contains the contact information for the methods and properties that handle the parking rates service logic.</para>
             </summary>
         </member>
         <member name="M:App.Services.IParkingRateService.GetPrice(System.DateTimeOffset,System.DateTimeOffset)">
@@ -202,7 +197,8 @@
         </member>
         <member name="T:App.Services.ParkingRateService">
             <summary>
-                The ParkingRateService class.
+                ParkingRateService
+                <para>Contains implementations for the methods and properties that handle the parking rates service logic.</para>
             </summary>
         </member>
         <member name="M:App.Services.ParkingRateService.#ctor(App.Repositories.IParkingRateRepository)">
@@ -213,8 +209,8 @@
         </member>
         <member name="M:App.Services.ParkingRateService.GetPrice(System.DateTimeOffset,System.DateTimeOffset)">
             <summary>
-                The GetPrice method.
-                <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies business logic.</para>
+                GetPrice
+                <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies any needed logic.</para>
             </summary>
             <param name="start">The start date time offset.</param>
             <param name="end">The end date time offset.</param>

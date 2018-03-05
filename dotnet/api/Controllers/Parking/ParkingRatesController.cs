@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace App.Controllers.Parking
 {
     /// <summary>
-    ///     The ParkingRatesController class.
-    ///     <para>Contains the methods to return a view of parking rates based on the content request.</para>
+    ///     ParkingRatesController
+    ///     <para>Contains the methods to return a view of parking rates based on the accept header.</para>
     /// </summary>
     /// <remarks>Inherits from <see cref="BaseController" /></remarks>
     [Produces("application/json", "application/xml"), Route("api/{version}/parking")]

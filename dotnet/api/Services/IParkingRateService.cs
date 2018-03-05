@@ -3,7 +3,8 @@ using System;
 namespace App.Services
 {
     /// <summary>
-    ///     The ParkingRateService interface.
+    ///     IParkingRateService
+    ///     <para>Contains the contact information for the methods and properties that handle the parking rates service logic.</para>
     /// </summary>
     public interface IParkingRateService
     {

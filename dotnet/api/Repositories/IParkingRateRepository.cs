@@ -4,8 +4,8 @@ using App.Models;
 namespace App.Repositories
 {
     /// <summary>
-    ///     The IParkingRateRepository interface.
-    ///     <para>Contains the contract for the methods and properties needed to retrieve the data from the parking rate repository.</para>
+    ///     IParkingRateRepository
+    ///     <para>Contains the contract information for the methods and properties needed to retrieve the data from the parking rate repository.</para>
     /// </summary>
     public interface IParkingRateRepository
     {
