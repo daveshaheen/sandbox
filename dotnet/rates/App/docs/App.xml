@@ -20,78 +20,55 @@
         </member>
         <member name="M:App.Controllers.Parking.ParkingRatesController.#ctor(App.Services.IParkingRateService)">
             <summary>
-                The ParkingRatesController constructor.
+                ParkingRatesController constructor
             </summary>
-            <param name="parkingRateService">A parking rate service.</param>
+            <param name="parkingRateService">Parking rate service.</param>
         </member>
         <member name="M:App.Controllers.Parking.ParkingRatesController.Get(System.String,System.String)">
-            <summary>
-                Get parking rates based on a start and end ISO 8601 date formats.
-            </summary>
-            <remarks>
-                Formats the response based on the Accept header or using a format filter, i.e. rates.json or rates.xml.
-            </remarks>
-            <param name="start">A required start date and time in ISO 8601 format.</param>
-            <param name="end">A required end date and time in ISO 8601 format.</param>
+            <summary>Get parking rates based on a start and end ISO 8601 date time formats.</summary>
+            <param name="start">Required start date time in ISO 8601 format.</param>
+            <param name="end">Required end date time in ISO 8601 format.</param>
             <returns>Returns an IActionResult. </returns>
             <response code="200">Response code of 200 returns the parking price. </response>
             <response code="400">Response code of 400 returns Bad Request with error messages if there are errors in the query. </response>
             <response code="404">Response code of 404 unavailable returns if there is no data available. </response>
         </member>
+        <member name="T:App.Models.Message">
+            <summary>Message</summary>
+        </member>
+        <member name="P:App.Models.Message.Content">
+            <summary>Gets or sets the message content.</summary>
+        </member>
+        <member name="T:App.Models.ParkingRate">
+            <summary>Parking Rate</summary>
+        </member>
+        <member name="P:App.Models.ParkingRate.Price">
+            <summary>Gets or sets the price.</summary>
+        </member>
         <member name="T:App.Models.ParkingRateDataModel">
-            <summary>
-                The parking rate data model.
-            </summary>
+            <summary>Parking rate data model</summary>
         </member>
         <member name="P:App.Models.ParkingRateDataModel.Days">
-            <summary>
-                Gets or sets the Days property.
-            </summary>
-            <value>Returns an enumerable of days.</value>
+            <summary>Gets or sets the Days property.</summary>
         </member>
         <member name="P:App.Models.ParkingRateDataModel.Price">
-            <summary>
-                Gets or sets the Price property.
-            </summary>
-            <value>Returns the parking rate price.</value>
+            <summary>Gets or sets the Price property.</summary>
         </member>
         <member name="P:App.Models.ParkingRateDataModel.StartTime">
-            <summary>
-                Gets or sets the start time.
-            </summary>
-            <value>Returns the start time.</value>
+            <summary>Gets or sets the start time.</summary>
         </member>
         <member name="P:App.Models.ParkingRateDataModel.EndTime">
-            <summary>
-                Gets or sets the end time.
-            </summary>
-            <value>Returns the end time.</value>
+            <summary>Gets or sets the end time.</summary>
         </member>
         <member name="T:App.Models.ParkingRatesDataModel">
-            <summary>
-                The parking rates data model.
-            </summary>
+            <summary>Parking rates data model.</summary>
         </member>
         <member name="P:App.Models.ParkingRatesDataModel.Rates">
-            <summary>
-                Gets or sets the rates.
-            </summary>
-            <value>Returns an enumerable of rates.</value>
-        </member>
-        <member name="T:App.Models.ParkingRateViewModel">
-            <summary>
-                The parking rate view model.
-            </summary>
-        </member>
-        <member name="P:App.Models.ParkingRateViewModel.Price">
-            <summary>
-                Gets or sets a price.
-            </summary>
-            <value>Returns a price.</value>
+            <summary>Gets or sets the rates.</summary>
         </member>
         <member name="T:App.Program">
             <summary>
-                The Program class.
+                Program
                 <para>
                     Provides the entry point for the Rates Web API application.
                 </para>
@@ -102,7 +79,7 @@
                     The {version} can be anything right now. It's there so it's available incase of future updates.
                 </para>
                 <para>
-                    The .{format?} is optional and can either be xml, json, or left off.
+                    The .{format?} is optional and can either be xml, json, proto, or left off.
                 </para>
                 <para>
                     The {start} and {end} must be on the same day and in ISO 8601 format. For example <c>start=2015-07-01T07:00:00Z</c> and <c>end=2015-07-01T12:00:00Z</c>.
@@ -119,7 +96,7 @@
         </member>
         <member name="M:App.Program.BuildWebHost(System.String[])">
             <summary>
-                The BuildWebHost method.
+                BuildWebHost
                 <para>
                     A static method to configure a web host.
                 </para>
@@ -150,9 +127,7 @@
             </summary>
         </member>
         <member name="M:App.Repositories.IParkingRateRepository.GetParkingRatesData(System.DayOfWeek,System.TimeSpan,System.TimeSpan)">
-            <summary>
-                Gets the parking rates from the data repository.
-            </summary>
+            <summary>Gets the parking rates from the data repository.</summary>
             <param name="dayOfWeek">The day of the week.</param>
             <param name="startTime">The start time.</param>
             <param name="endTime">The end time.</param>
@@ -166,10 +141,8 @@
             <remarks>Implements <see cref="T:App.Repositories.IParkingRateRepository"/></remarks>
         </member>
         <member name="M:App.Repositories.ParkingRateRepository.#ctor(System.String)">
-            <summary>
-                Constructor for the parking rate repository.
-            </summary>
-            <param name="json">The data as a json string.</param>
+            <summary>Parking rate repository constructor.</summary>
+            <param name="json">The json data.</param>
         </member>
         <member name="M:App.Repositories.ParkingRateRepository.GetParkingRatesData(System.DayOfWeek,System.TimeSpan,System.TimeSpan)">
             <summary>
@@ -183,13 +156,13 @@
         <member name="T:App.Services.IParkingRateService">
             <summary>
                 IParkingRateService
-                <para>Contains the contact information for the methods and properties that handle the parking rates service logic.</para>
+                <para>Parking rate service interface.</para>
             </summary>
         </member>
         <member name="M:App.Services.IParkingRateService.GetPrice(System.DayOfWeek,System.TimeSpan,System.TimeSpan)">
             <summary>
-                The GetPrice method.
-                <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies business logic.</para>
+                GetPrice
+                <para>Gets the price based on the day of the week and the start and end timespans.</para>
             </summary>
             <param name="dayOfWeek">The day of the week.</param>
             <param name="start">The start date time offset.</param>
@@ -199,19 +172,17 @@
         <member name="T:App.Services.ParkingRateService">
             <summary>
                 ParkingRateService
-                <para>Contains implementations for the methods and properties that handle the parking rates service logic.</para>
+                <para>Parking rate service implementation.</para>
             </summary>
         </member>
         <member name="M:App.Services.ParkingRateService.#ctor(App.Repositories.IParkingRateRepository)">
-            <summary>
-                ParkingRateService constructor.
-            </summary>
-            <param name="parkingRateRepository">A parking rate repository.</param>
+            <summary>ParkingRateService constructor.</summary>
+            <param name="parkingRateRepository">Parking rate repository.</param>
         </member>
         <member name="M:App.Services.ParkingRateService.GetPrice(System.DayOfWeek,System.TimeSpan,System.TimeSpan)">
             <summary>
                 GetPrice
-                <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies any needed logic.</para>
+                <para>Gets the price based on the day of the week and the start and end timespans.</para>
             </summary>
             <param name="dayOfWeek">The day of the week.</param>
             <param name="start">The start date time offset.</param>
@@ -220,13 +191,13 @@
         </member>
         <member name="T:App.Startup">
             <summary>
-                The Startup class.
+                Startup
                 <para>Contains the startup methods for the application.</para>
             </summary>
         </member>
         <member name="M:App.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
-                The Startup class constructor.
+                Startup constructor
             </summary>
             <param name="configuration">An application configuration.</param>
         </member>
@@ -238,7 +209,7 @@
         </member>
         <member name="M:App.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-                The ConfigureServices method.
+                ConfigureServices
                 <para>This method gets called by the runtime. Use this method to add services to the container.</para>
             </summary>
             <param name="services">A collection of services.</param>
@@ -252,14 +223,10 @@
             <param name="env">Information about the hosting environment.</param>
         </member>
         <member name="T:App.Utility.DateTimeFormatUtility">
-            <summary>
-                DateTime format utility class
-            </summary>
+            <summary>DateTime format utility class</summary>
         </member>
         <member name="F:App.Utility.DateTimeFormatUtility.ISO8601AcceptedFormats">
-            <summary>
-                Accepted ISO 8601 formats
-            </summary>
+            <summary>Accepted ISO 8601 formats.</summary>
         </member>
     </members>
 </doc>

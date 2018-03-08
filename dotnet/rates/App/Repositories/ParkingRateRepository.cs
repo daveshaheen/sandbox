@@ -28,10 +28,8 @@ namespace App.Repositories
     ]
 }";
 
-        /// <summary>
-        ///     Constructor for the parking rate repository.
-        /// </summary>
-        /// <param name="json">The data as a json string.</param>
+        /// <summary>Parking rate repository constructor.</summary>
+        /// <param name="json">The json data.</param>
         public ParkingRateRepository(string json = null)
         {
             if (!string.IsNullOrWhiteSpace(json))
@@ -51,9 +49,9 @@ namespace App.Repositories
             new ParkingRatesDataModel
             {
                 Rates = GetDataFromString(data)
-                        .Where(r => r.Days.Any(d => d == dayOfWeek))
-                        .Where(r => r.StartTime <= startTime && r.EndTime >= endTime)
-                        .ToList()
+                .Where(r => r.Days.Any(d => d == dayOfWeek))
+                .Where(r => r.StartTime <= startTime && r.EndTime >= endTime)
+                .ToList()
             };
 
         private class Sample

@@ -7,7 +7,6 @@ namespace App.Controllers
     ///     <para>An abstract base class for controllers to inherit from.</para>
     /// </summary>
     /// <remarks>Inherits from <see cref="Controller" /></remarks>
-    public abstract class BaseController : Controller
-    {
-    }
+    [Route("api/{version}")]
+    public abstract class BaseController : Controller { }
 }

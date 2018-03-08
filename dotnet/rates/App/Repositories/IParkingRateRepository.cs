@@ -9,9 +9,7 @@ namespace App.Repositories
     /// </summary>
     public interface IParkingRateRepository
     {
-        /// <summary>
-        ///     Gets the parking rates from the data repository.
-        /// </summary>
+        /// <summary>Gets the parking rates from the data repository.</summary>
         /// <param name="dayOfWeek">The day of the week.</param>
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>

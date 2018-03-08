@@ -4,13 +4,13 @@ namespace App.Services
 {
     /// <summary>
     ///     IParkingRateService
-    ///     <para>Contains the contact information for the methods and properties that handle the parking rates service logic.</para>
+    ///     <para>Parking rate service interface.</para>
     /// </summary>
     public interface IParkingRateService
     {
         /// <summary>
-        ///     The GetPrice method.
-        ///     <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies business logic.</para>
+        ///     GetPrice
+        ///     <para>Gets the price based on the day of the week and the start and end timespans.</para>
         /// </summary>
         /// <param name="dayOfWeek">The day of the week.</param>
         /// <param name="start">The start date time offset.</param>

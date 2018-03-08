@@ -10,7 +10,7 @@ using Serilog.Formatting.Compact;
 namespace App
 {
     /// <summary>
-    ///     The Program class.
+    ///     Program
     ///     <para>
     ///         Provides the entry point for the Rates Web API application.
     ///     </para>
@@ -21,7 +21,7 @@ namespace App
     ///         The {version} can be anything right now. It's there so it's available incase of future updates.
     ///     </para>
     ///     <para>
-    ///         The .{format?} is optional and can either be xml, json, or left off.
+    ///         The .{format?} is optional and can either be xml, json, proto, or left off.
     ///     </para>
     ///     <para>
     ///         The {start} and {end} must be on the same day and in ISO 8601 format. For example <c>start=2015-07-01T07:00:00Z</c> and <c>end=2015-07-01T12:00:00Z</c>.
@@ -62,7 +62,7 @@ namespace App
         }
 
         /// <summary>
-        ///     The BuildWebHost method.
+        ///     BuildWebHost
         ///     <para>
         ///         A static method to configure a web host.
         ///     </para>

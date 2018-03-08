@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using WebApiContrib.Core.Formatter.Protobuf;
 
 namespace App
 {
     /// <summary>
-    ///     The Startup class.
+    ///     Startup
     ///     <para>Contains the startup methods for the application.</para>
     /// </summary>
     public class Startup
@@ -19,7 +20,7 @@ namespace App
         private const string DocsName = "Parking Rates Web API";
 
         /// <summary>
-        ///     The Startup class constructor.
+        ///     Startup constructor
         /// </summary>
         /// <param name="configuration">An application configuration.</param>
         public Startup(IConfiguration configuration) => Configuration = configuration;
@@ -31,7 +32,7 @@ namespace App
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        ///     The ConfigureServices method.
+        ///     ConfigureServices
         ///     <para>This method gets called by the runtime. Use this method to add services to the container.</para>
         /// </summary>
         /// <param name="services">A collection of services.</param>
@@ -49,7 +50,8 @@ namespace App
                 options.FormatterMappings.SetMediaTypeMappingForFormat("xml", "application/xml");
             })
             .AddXmlSerializerFormatters()
-            .AddXmlDataContractSerializerFormatters();
+            .AddXmlDataContractSerializerFormatters()
+            .AddProtobufFormatters();
 
             services.AddSwaggerGen(s =>
             {
@@ -59,7 +61,7 @@ namespace App
                     Version = DocsVersion
                 });
 
-                s.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/docs/App.xml"));
+                s.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(), "docs/App.xml"));
             });
         }
 

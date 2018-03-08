@@ -6,16 +6,14 @@ namespace App.Services
 {
     /// <summary>
     ///     ParkingRateService
-    ///     <para>Contains implementations for the methods and properties that handle the parking rates service logic.</para>
+    ///     <para>Parking rate service implementation.</para>
     /// </summary>
     public class ParkingRateService : IParkingRateService
     {
         private IParkingRateRepository _parkingRateRepository;
 
-        /// <summary>
-        ///     ParkingRateService constructor.
-        /// </summary>
-        /// <param name="parkingRateRepository">A parking rate repository.</param>
+        /// <summary>ParkingRateService constructor.</summary>
+        /// <param name="parkingRateRepository">Parking rate repository.</param>
         public ParkingRateService(IParkingRateRepository parkingRateRepository)
         {
             _parkingRateRepository = parkingRateRepository;
@@ -23,7 +21,7 @@ namespace App.Services
 
         /// <summary>
         ///     GetPrice
-        ///     <para>Applies any needed transforms on the inputs, fetches the price from the data repository, and applies any needed logic.</para>
+        ///     <para>Gets the price based on the day of the week and the start and end timespans.</para>
         /// </summary>
         /// <param name="dayOfWeek">The day of the week.</param>
         /// <param name="start">The start date time offset.</param>
@@ -31,7 +29,8 @@ namespace App.Services
         /// <returns>Returns the price.</returns>
         public decimal? GetPrice(DayOfWeek dayOfWeek, TimeSpan start, TimeSpan end)
         {
-            if (start > end) {
+            if (start > end)
+            {
                 return null;
             }
 
