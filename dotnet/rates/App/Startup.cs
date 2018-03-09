@@ -58,10 +58,11 @@ namespace App
                 s.SwaggerDoc(DocsVersion, new Info
                 {
                     Title = DocsName,
+                    Description = @"Note: Version can be anything right now and swagger does not able to handle the response content type of of application/x-protobuf out of the box.",
                     Version = DocsVersion
                 });
 
-                s.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(), "docs/App.xml"));
+                s.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/docs/App.xml"));
             });
         }
 

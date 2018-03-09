@@ -39,12 +39,11 @@ namespace App.Controllers.Parking
         [HttpGet("rates")]
         [HttpGet("rates.{format}"), FormatFilter]
         [Produces("application/json", "application/xml", "application/x-protobuf")]
-        [ProducesResponseType(typeof(ParkingRate), 200)]
-        [ProducesResponseType(typeof(Message), 400)]
-        [ProducesResponseType(typeof(Message), 404)]
+        [ProducesResponseType(typeof(Response), 200)]
+        [ProducesResponseType(typeof(Response), 400)]
+        [ProducesResponseType(typeof(Response), 404)]
         public IActionResult Get(
-            [FromQuery, Required(ErrorMessage = "Start query string parameter is required.")] string start,
-            [FromQuery, Required(ErrorMessage = "End query string parameter is required.")] string end)
+            [FromQuery, Required(ErrorMessage = "Start query string parameter is required.")] string start, [FromQuery, Required(ErrorMessage = "End query string parameter is required.")] string end)
         {
             var UTC8601Formats = DateTimeFormatUtility.ISO8601AcceptedFormats;
             if (string.IsNullOrWhiteSpace(start) || string.IsNullOrWhiteSpace(end))
@@ -84,17 +83,19 @@ namespace App.Controllers.Parking
                 return NotFound(GetModelStateErrors(ModelState));
             }
 
-            return Ok(new ParkingRate
+            return Ok(new Response
             {
-                Price = Convert.ToInt32(Math.Round(price.Value))
+                Price = Convert.ToInt32(Math.Round(price.Value)),
+                Errors = null
             });
         }
 
-        private Message GetModelStateErrors(ModelStateDictionary state)
+        private Response GetModelStateErrors(ModelStateDictionary state)
         {
-            return new Message
+            return new Response
             {
-                Content = state.Values.SelectMany(s => s.Errors).Select(e => e.ErrorMessage).ToArray()
+                Price = null,
+                Errors = state.Values.SelectMany(s => s.Errors).Select(e => e.ErrorMessage).ToArray()
             };
         }
     }

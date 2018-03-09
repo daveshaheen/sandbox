@@ -12,7 +12,7 @@ RUN dotnet publish -c Release -o out
 # Build runtime image
 FROM microsoft/aspnetcore:2.0 AS runtime-env
 WORKDIR /app
-RUN mkdir ./logs
+RUN mkdir ./logs && mkdir ./docs
 VOLUME ./logs
 EXPOSE 5000
 COPY --from=build-env /app/out .

@@ -13,7 +13,7 @@
                 "&&",
                 "cp",
                 "${workspaceFolder}/App/bin/Debug/App.xml",
-                "${workspaceFolder}/App/docs/App.xml"
+                "${workspaceFolder}/App/wwwroot/docs/App.xml"
             ],
             "problemMatcher": "$msCompile",
             "group": {
@@ -33,7 +33,7 @@
                 "&&",
                 "cp",
                 "${workspaceFolder}/App/bin/Release/App.xml",
-                "${workspaceFolder}/App/docs/App.xml"
+                "${workspaceFolder}/App/wwwroot/docs/App.xml"
             ],
             "problemMatcher": "$msCompile",
             "group": "build"

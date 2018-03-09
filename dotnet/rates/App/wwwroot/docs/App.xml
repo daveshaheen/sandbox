@@ -33,18 +33,6 @@
             <response code="400">Response code of 400 returns Bad Request with error messages if there are errors in the query. </response>
             <response code="404">Response code of 404 unavailable returns if there is no data available. </response>
         </member>
-        <member name="T:App.Models.Message">
-            <summary>Message</summary>
-        </member>
-        <member name="P:App.Models.Message.Content">
-            <summary>Gets or sets the message content.</summary>
-        </member>
-        <member name="T:App.Models.ParkingRate">
-            <summary>Parking Rate</summary>
-        </member>
-        <member name="P:App.Models.ParkingRate.Price">
-            <summary>Gets or sets the price.</summary>
-        </member>
         <member name="T:App.Models.ParkingRateDataModel">
             <summary>Parking rate data model</summary>
         </member>
@@ -65,6 +53,18 @@
         </member>
         <member name="P:App.Models.ParkingRatesDataModel.Rates">
             <summary>Gets or sets the rates.</summary>
+        </member>
+        <member name="T:App.Models.Response">
+            <summary>Response</summary>
+        </member>
+        <member name="P:App.Models.Response.Errors">
+            <summary>Gets or sets the errors, if there are any. Can be null.</summary>
+        </member>
+        <member name="P:App.Models.Response.Price">
+            <summary>Gets or sets the parking rate price.</summary>
+            <remarks>
+                NOTE: I had thoughts of calling this property something generic like content which could be used to wrap whatever object was to be sent back to the client; then, add another property, Type, to describe the content type. I haven't had a chance to explore this idea yet, especially with using protocol buffers. Also, need to decide how to handle API versions. Maybe sticking Nginx in front of the API and let it route to different containers running different versions of API would be a good approach.
+            </remarks>
         </member>
         <member name="T:App.Program">
             <summary>

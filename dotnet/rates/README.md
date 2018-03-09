@@ -25,10 +25,13 @@ Navigate to 127.0.0.1:5000 or [::1]:5000 and see the swagger documentation for d
 
 To clean up the docker container and images run the following command. Note: this will delete the container, volume, images, and any dangling images on your system.
 
-    docker rm -v rates-api && docker rmi rates-api-runtime && docker rmi aspnetcore-builder && \
+    docker stop rates-api
+
+    docker rm -v rates-api && docker rmi rates-api-runtime; docker rmi aspnetcore-builder:2.0; \
     docker images | grep -v REPOSITORY | grep none | awk '{print $3}' | xargs -L1 docker rmi
 
 ## Todo
 
-  1. Break up the project into a data repository, a service layer for business or domain logic, and a project to support the view.
-  2. Add gRPC support and clean up response.
+  1. Add ability to query logs, either by shipping logs to a service, or just reading and querying them.
+  2. Add more tests
+  3. Add more documentation.
