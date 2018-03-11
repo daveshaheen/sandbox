@@ -39,6 +39,17 @@
             "group": "build"
         },
         {
+            "label": "clean",
+            "command": "TERM=xterm dotnet",
+            "type": "shell",
+            "args": [
+                "clean",
+                "${workspaceFolder}/App/App.csproj",
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
             "label": "test",
             "command": "TERM=xterm dotnet",
             "type": "shell",
