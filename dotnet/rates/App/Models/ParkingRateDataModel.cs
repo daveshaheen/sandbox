@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace App.Models
-{
+namespace App.Models {
     /// <summary>Parking rate data model</summary>
-    public class ParkingRateDataModel
-    {
+    public class ParkingRateDataModel {
         /// <summary>Gets or sets the Days property.</summary>
         public IEnumerable<DayOfWeek> Days { get; set; }
 

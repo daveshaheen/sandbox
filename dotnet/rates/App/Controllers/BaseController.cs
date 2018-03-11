@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.Controllers
-{
+namespace App.Controllers {
     /// <summary>
-    ///     BaseContoller
-    ///     <para>An abstract base class for controllers to inherit from.</para>
+    /// BaseContoller
+    /// <para>An abstract base class for controllers to inherit from.</para>
     /// </summary>
     /// <remarks>Inherits from <see cref="Controller" /></remarks>
     [Route("api/{version}")]

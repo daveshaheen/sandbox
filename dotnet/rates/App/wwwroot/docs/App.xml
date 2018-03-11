@@ -28,7 +28,7 @@
             <summary>Get parking rates based on a start and end ISO 8601 date time formats.</summary>
             <param name="start">Required start date time in ISO 8601 format.</param>
             <param name="end">Required end date time in ISO 8601 format.</param>
-            <returns>Returns an IActionResult. </returns>
+            /// <returns>Returns an IActionResult. </returns>
             <response code="200">Response code of 200 returns the parking price. </response>
             <response code="400">Response code of 400 returns Bad Request with error messages if there are errors in the query. </response>
             <response code="404">Response code of 404 unavailable returns if there is no data available. </response>

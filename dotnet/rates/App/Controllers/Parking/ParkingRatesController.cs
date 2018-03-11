@@ -8,24 +8,21 @@ using App.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace App.Controllers.Parking
-{
+namespace App.Controllers.Parking {
     /// <summary>
-    ///     ParkingRatesController
-    ///     <para>Contains the methods to return a view of parking rates based on the accept header.</para>
+    /// ParkingRatesController
+    /// <para>Contains the methods to return a view of parking rates based on the accept header.</para>
     /// </summary>
     /// <remarks>Inherits from <see cref="BaseController" /></remarks>
     [Route("api/{version}/parking")]
-    public class ParkingRatesController : BaseController
-    {
+    public class ParkingRatesController : BaseController {
         private IParkingRateService _parkingRateService;
 
         /// <summary>
-        ///     ParkingRatesController constructor
+        /// ParkingRatesController constructor
         /// </summary>
         /// <param name="parkingRateService">Parking rate service.</param>
-        public ParkingRatesController(IParkingRateService parkingRateService) : base()
-        {
+        public ParkingRatesController(IParkingRateService parkingRateService) : base() {
             _parkingRateService = parkingRateService;
         }
 
@@ -42,60 +39,49 @@ namespace App.Controllers.Parking
         [ProducesResponseType(typeof(Response), 200)]
         [ProducesResponseType(typeof(Response), 400)]
         [ProducesResponseType(typeof(Response), 404)]
-        public IActionResult Get(
-            [FromQuery, Required(ErrorMessage = "Start query string parameter is required.")] string start, [FromQuery, Required(ErrorMessage = "End query string parameter is required.")] string end)
-        {
+        public IActionResult Get([FromQuery, Required(ErrorMessage = "Start query string parameter is required.")] string start, [FromQuery, Required(ErrorMessage = "End query string parameter is required.")] string end) {
             var UTC8601Formats = DateTimeFormatUtility.ISO8601AcceptedFormats;
-            if (string.IsNullOrWhiteSpace(start) || string.IsNullOrWhiteSpace(end))
-            {
+            if (string.IsNullOrWhiteSpace(start) || string.IsNullOrWhiteSpace(end)) {
                 ModelState.AddModelError("controller", "Unavailable");
                 return BadRequest(GetModelStateErrors(ModelState));
             }
 
-            if (!DateTimeOffset.TryParseExact(start, UTC8601Formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var startUTC8601))
-            {
+            if (!DateTimeOffset.TryParseExact(start, UTC8601Formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var startUTC8601)) {
                 ModelState.AddModelError("start", "Start query string parameter is not in ISO 8601 format.");
                 return BadRequest(GetModelStateErrors(ModelState));
             }
 
-            if (!DateTimeOffset.TryParseExact(end, UTC8601Formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var endUTC8601))
-            {
+            if (!DateTimeOffset.TryParseExact(end, UTC8601Formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var endUTC8601)) {
                 ModelState.AddModelError("end", "End query string parameter is not in ISO 8601 format.");
                 return BadRequest(GetModelStateErrors(ModelState));
             }
 
-            if (DateTime.Compare(startUTC8601.Date, endUTC8601.Date) != 0)
-            {
+            if (DateTime.Compare(startUTC8601.Date, endUTC8601.Date) != 0) {
                 ModelState.AddModelError("end", "Start and end query string parameter are not on the same day.");
                 return BadRequest(GetModelStateErrors(ModelState));
             }
 
-            if (!ModelState.IsValid)
-            {
+            if (!ModelState.IsValid) {
                 ModelState.AddModelError("controller", "Unavailable");
                 return BadRequest(GetModelStateErrors(ModelState));
             }
 
             var price = _parkingRateService.GetPrice(startUTC8601.DayOfWeek, startUTC8601.TimeOfDay, endUTC8601.TimeOfDay);
-            if (price == null)
-            {
+            if (price == null) {
                 ModelState.AddModelError("controller", "Unavailable");
                 return NotFound(GetModelStateErrors(ModelState));
             }
 
-            return Ok(new Response
-            {
+            return Ok(new Response {
                 Price = Convert.ToInt32(Math.Round(price.Value)),
-                Errors = null
+                    Errors = null
             });
         }
 
-        private Response GetModelStateErrors(ModelStateDictionary state)
-        {
-            return new Response
-            {
+        private Response GetModelStateErrors(ModelStateDictionary state) {
+            return new Response {
+                Errors = state.Values.SelectMany(s => s.Errors).Select(e => e.ErrorMessage).ToArray(),
                 Price = null,
-                Errors = state.Values.SelectMany(s => s.Errors).Select(e => e.ErrorMessage).ToArray()
             };
         }
     }

@@ -1,16 +1,14 @@
 using System;
 
-namespace App.Services
-{
+namespace App.Services {
     /// <summary>
-    ///     IParkingRateService
-    ///     <para>Parking rate service interface.</para>
+    /// IParkingRateService
+    /// <para>Parking rate service interface.</para>
     /// </summary>
-    public interface IParkingRateService
-    {
+    public interface IParkingRateService {
         /// <summary>
-        ///     GetPrice
-        ///     <para>Gets the price based on the day of the week and the start and end timespans.</para>
+        /// GetPrice
+        /// <para>Gets the price based on the day of the week and the start and end timespans.</para>
         /// </summary>
         /// <param name="dayOfWeek">The day of the week.</param>
         /// <param name="start">The start date time offset.</param>

@@ -58,7 +58,7 @@
                 "${workspaceFolder}/Tests/Tests.csproj"
             ],
             "problemMatcher": "$msCompile",
-            "group":{
+            "group": {
                 "kind": "test",
                 "isDefault": true
             }

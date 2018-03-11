@@ -4,15 +4,13 @@ using System.Linq;
 using App.Models;
 using Newtonsoft.Json;
 
-namespace App.Repositories
-{
+namespace App.Repositories {
     /// <summary>
-    ///     ParkingRateRepository
-    ///     <para>Contains implementations for the methods and properties needed to retrieve the data from the parking rate repository.</para>
+    /// ParkingRateRepository
+    /// <para>Contains implementations for the methods and properties needed to retrieve the data from the parking rate repository.</para>
     /// </summary>
     /// <remarks>Implements <see cref="IParkingRateRepository"/></remarks>
-    public class ParkingRateRepository : IParkingRateRepository
-    {
+    public class ParkingRateRepository : IParkingRateRepository {
         private readonly string data = @"{
     ""rates"": [
         {
@@ -30,62 +28,53 @@ namespace App.Repositories
 
         /// <summary>Parking rate repository constructor.</summary>
         /// <param name="json">The json data.</param>
-        public ParkingRateRepository(string json = null)
-        {
-            if (!string.IsNullOrWhiteSpace(json))
-            {
+        public ParkingRateRepository(string json = null) {
+            if (!string.IsNullOrWhiteSpace(json)) {
                 data = json;
             }
         }
 
         /// <summary>
-        ///     Gets the parking rates from the data repository.
+        /// Gets the parking rates from the data repository.
         /// </summary>
         /// <param name="dayOfWeek">The day of the week.</param>
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>
         /// <returns>Returns the ParkingRatesDataModel</returns>
         public ParkingRatesDataModel GetParkingRatesData(DayOfWeek dayOfWeek, TimeSpan startTime, TimeSpan endTime) =>
-            new ParkingRatesDataModel
-            {
+            new ParkingRatesDataModel {
                 Rates = GetDataFromString(data)
                 .Where(r => r.Days.Any(d => d == dayOfWeek))
                 .Where(r => r.StartTime <= startTime && r.EndTime >= endTime)
                 .ToList()
             };
 
-        private class Sample
-        {
+        private class Sample {
             public SampleData[] Rates { get; set; }
         }
 
-        private class SampleData
-        {
+        private class SampleData {
             public string Days { get; set; }
             public string Times { get; set; }
             public int Price { get; set; }
         }
 
-        private IEnumerable<ParkingRateDataModel> GetDataFromString(string data)
-        {
+        private IEnumerable<ParkingRateDataModel> GetDataFromString(string data) {
             var json = JsonConvert.DeserializeObject<Sample>(data);
 
             var parkingRates = new List<ParkingRateDataModel>();
-            foreach (var rate in json.Rates)
-            {
+            foreach (var rate in json.Rates) {
                 var parkingRateData = new ParkingRateDataModel();
                 var parkingRateDays = new List<DayOfWeek>();
 
                 var days = rate.Days.Split(',');
-                foreach (var day in days)
-                {
+                foreach (var day in days) {
                     parkingRateDays.Add(GetDayOfWeek(day.ToLowerInvariant()));
                 }
                 parkingRateData.Days = parkingRateDays;
 
                 var times = rate.Times.Split('-');
-                if (times.Length != 2)
-                {
+                if (times.Length != 2) {
                     throw new Exception($"Invalid times: {times}.");
                 }
                 parkingRateData.StartTime = GetTimeSpan(times[0]);
@@ -99,10 +88,8 @@ namespace App.Repositories
             return parkingRates;
         }
 
-        private TimeSpan GetTimeSpan(string time)
-        {
-            if (time.ToCharArray().Length != 4)
-            {
+        private TimeSpan GetTimeSpan(string time) {
+            if (time.ToCharArray().Length != 4) {
                 throw new ArgumentException($"Invalid time: {time}");
             }
 
@@ -115,10 +102,8 @@ namespace App.Repositories
             return new TimeSpan(Convert.ToInt32(hours), Convert.ToInt32(days), 0);
         }
 
-        private DayOfWeek GetDayOfWeek(string day)
-        {
-            switch (day.ToLowerInvariant())
-            {
+        private DayOfWeek GetDayOfWeek(string day) {
+            switch (day.ToLowerInvariant()) {
                 case "mon":
                     return DayOfWeek.Monday;
                 case "tues":
