@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
+using Serilog.Sinks.Elasticsearch;
 
 namespace App {
     /// <summary>
@@ -29,15 +30,26 @@ namespace App {
     /// </summary>
     public class Program {
         /// <summary>
-        /// The Main method.
+        /// Main
         /// <para>The main entry point for the Rates Web API application.</para>
-        /// /// </summary>
+        /// </summary>
         /// <param name="args">The command line arguments.</param>
         public static int Main(string[] args) {
-            Log.Logger = new LoggerConfiguration()
+            var elasticSearchUrl = Environment.GetEnvironmentVariable("DOTNET_ELASTICSEARCH_URL");
+            var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .Enrich.FromLogContext()
+                .Enrich.FromLogContext();
+
+            if (elasticSearchUrl.Length > 0) {
+                loggerConfiguration.WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"{elasticSearchUrl}")) {
+                    AutoRegisterTemplate = true,
+                    AutoRegisterTemplateVersion = AutoRegisterTemplateVersion.ESv6,
+                    CustomFormatter = new ExceptionAsObjectJsonFormatter(renderMessage: true)
+                });
+            }
+
+            Log.Logger = loggerConfiguration
                 .WriteTo.File(new CompactJsonFormatter(), "./logs/log.json", buffered : true, rollingInterval : RollingInterval.Day)
                 .CreateLogger();
 

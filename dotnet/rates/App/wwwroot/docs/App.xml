@@ -89,9 +89,9 @@
         </member>
         <member name="M:App.Program.Main(System.String[])">
             <summary>
-            The Main method.
+            Main
             <para>The main entry point for the Rates Web API application.</para>
-            /// </summary>
+            </summary>
             <param name="args">The command line arguments.</param>
         </member>
         <member name="M:App.Program.BuildWebHost(System.String[])">
