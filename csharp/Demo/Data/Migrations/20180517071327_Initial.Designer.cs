@@ -7,7 +7,7 @@ using System;
 
 namespace Data.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(DemoDbContext))]
     [Migration("20180517071327_Initial")]
     partial class Initial
     {

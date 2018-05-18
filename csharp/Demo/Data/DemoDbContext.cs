@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    internal sealed class Context : DbContext
+    public sealed class DemoDbContext : DbContext
     {
         public DbSet<Employee> Employee { get; set; }
         public DbSet<EmployeeAudit> EmployeeAudit { get; set; }
@@ -14,6 +14,7 @@ namespace Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // TODO: Pass in the connection string and server to use in from the appsettings.json file.
             optionsBuilder.UseSqlServer(@"Server=.\;Database=Demo;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
 

@@ -86,6 +86,18 @@ namespace Data.Migrations
                 "Employee",
                 "EmployerId");
 
+            migrationBuilder.CreateIndex(
+                "IX_Employee_Email",
+                "Employee",
+                "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                "IX_Employer_Name",
+                "Employer",
+                "Name",
+                unique: true);
+
             migrationBuilder.Sql(@"
 CREATE OR ALTER TRIGGER Employee_OnUpdate ON Employee
 AFTER UPDATE AS

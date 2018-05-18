@@ -7,7 +7,7 @@ using System;
 
 namespace Data.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(DemoDbContext))]
     internal class ContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

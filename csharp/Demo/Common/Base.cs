@@ -4,13 +4,10 @@ namespace Common
 {
     /// <summary>
     ///     <para>
-    ///         Provides a base class for database table models to inherit from.
+    ///         Provides a base class for models to inherit from that provides fields for Id, Created, Modified, and Deleted.
     ///     </para>
     ///     <para>
-    ///         If a class inherits from Base then Id, Created, Modified, and Deleted will be available.
-    ///     </para>
-    ///     <para>
-    ///         Note: Could also include CreatedBy, ModifiedBy and DeletedBy, but ignoring for now since this demo doesn't have users implemented.
+    ///         Note: Could also include CreatedBy, ModifiedBy and DeletedBy, but ignoring those for now since this demo doesn't have users implemented.
     ///         Id could also be changed to a bigint if needed.
     ///     </para>
     /// </summary>

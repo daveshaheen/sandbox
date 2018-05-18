@@ -4,7 +4,7 @@ namespace Common
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Employer audit model
+    ///     Employer audit model for change tracking.
     /// </summary>
     public class EmployerAudit : Base
     {
