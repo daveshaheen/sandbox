@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data
@@ -19,7 +20,7 @@ namespace Data
         /// <inheritdoc />
         public override int SaveChanges()
         {
-            var inheritsFromBase = ChangeTracker.Entries().Where(e => e.Entity is DatabaseTable).ToList();
+            var inheritsFromBase = ChangeTracker.Entries().Where(e => e.Entity is Base).ToList();
             foreach (var item in inheritsFromBase)
             {
                 switch (item.State)

@@ -1,13 +1,12 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Data
+namespace Common
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Employer audit table
+    ///     Employer audit model
     /// </summary>
-    internal class EmployerAudit : DatabaseTable
+    public class EmployerAudit : Base
     {
         public int EmployerId { get; set; }
 

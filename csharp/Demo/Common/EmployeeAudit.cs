@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Data
+namespace Common
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Employee audit table
+    ///     Employee audit model
     /// </summary>
-    internal class EmployeeAudit : DatabaseTable
+    public class EmployeeAudit : Base
     {
         public int Dependents { get; set; }
 

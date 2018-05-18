@@ -1,17 +1,17 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Data
+namespace Common
 {
     /// <inheritdoc />
     /// <summary>
     ///     <para>
-    ///         Employee table
+    ///         Employee model
     ///     </para>
     ///     <para>
-    ///         Not implementing these items for this demo, but...
-    ///         We could store address and tax identification information here or in related tables. Dependents can be broken out into it's own table or maybe make a person table and types.
-    ///         Tax information such as SSN must be encrypted and might also be better kept in another table for partitioning and security reasons or another database/system entirely.
-    ///         An employee could have many addresses with one marked as primary so a related table would probably be better than storing here.
+    ///         NOTE: Not implementing these items for this demo, but additional related tables could include address and tax identification information.
+    ///         Dependents can also be broken out into it's own table or instead maybe have a person table and types to avoid duplicating fields.
+    ///         Tax information such as SSN must be encrypted and might also be better kept in another table for partitioning and security reasons or
+    ///         maybe even another database entirely.
     ///     </para>
     ///     <para>
     ///         See https://stackoverflow.com/questions/20958/list-of-standard-lengths-for-database-fields for email length.
@@ -21,7 +21,7 @@ namespace Data
     ///         https://en.wikipedia.org/wiki/Hubert_Blaine_Wolfeschlegelsteinhausenbergerdorff,_Sr. regarding first and last name lengths.
     ///     </para>
     /// </summary>
-    public class Employee : DatabaseTable
+    public class Employee : Base
     {
         public int Dependents { get; set; }
 
