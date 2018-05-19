@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Common;
+using Demo.Common.Models;
 
-namespace Domain
+namespace Demo.Domain
 {
     /// <summary>
     ///     Employee service.

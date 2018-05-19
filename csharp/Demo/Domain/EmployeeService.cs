@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Common;
-using Data;
+using Demo.Common.Models;
+using Demo.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Domain
+namespace Demo.Domain
 {
     /// <inheritdoc />
     public class EmployeeService : IEmployeeService
@@ -11,7 +11,7 @@ namespace Domain
         /// <inheritdoc />
         public async Task<int> SaveEmployee(Employee employee)
         {
-            using(var demoDbContext = new DemoDbContext())
+            using(var demoDbContext = new DatabaseContext())
             {
                 var entity = await demoDbContext.Employee.FirstOrDefaultAsync(e => e.Email == employee.Email);
                 if (entity == null)

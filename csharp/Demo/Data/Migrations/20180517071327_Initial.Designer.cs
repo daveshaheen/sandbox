@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace Data.Migrations
+namespace Demo.Data.Migrations
 {
-    [DbContext(typeof(DemoDbContext))]
+    [DbContext(typeof(DatabaseContext))]
     [Migration("20180517071327_Initial")]
     partial class Initial
     {

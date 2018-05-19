@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using Common;
+using Demo.Common.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Data
+namespace Demo.Data
 {
-    public sealed class DemoDbContext : DbContext
+    public sealed class DatabaseContext : DbContext
     {
         public DbSet<Employee> Employee { get; set; }
         public DbSet<EmployeeAudit> EmployeeAudit { get; set; }

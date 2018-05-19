@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers
+namespace Demo.Applications.Api.Controllers
 {
     [FormatFilter]
     [Produces("application/json", "application/xml")]
     [Route("api/[controller]")]
-    public sealed class EmployeeController : Controller
+    public sealed class EmployerController : Controller
     {
         // GET api/values
         [HttpGet]

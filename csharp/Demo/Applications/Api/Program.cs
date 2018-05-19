@@ -2,7 +2,7 @@ using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Api
+namespace Demo.Applications.Api
 {
     internal static class Program
     {

@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Common;
-using Data;
+using Demo.Common.Models;
+using Demo.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Domain
+namespace Demo.Domain
 {
     /// <inheritdoc />
     public class EmployerService : IEmployerService
@@ -11,7 +11,7 @@ namespace Domain
         /// <inheritdoc />
         public async Task<int> SaveEmployer(Employer employer)
         {
-            using(var demoDbContext = new DemoDbContext())
+            using(var demoDbContext = new DatabaseContext())
             {
                 var entity = await demoDbContext.Employer.FirstOrDefaultAsync(e => e.Name == employer.Name);
                 if (entity == null)

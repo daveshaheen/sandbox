@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 
-namespace Data.Migrations
+namespace Demo.Data.Migrations
 {
-    [DbContext(typeof(DemoDbContext))]
+    [DbContext(typeof(DatabaseContext))]
     internal class ContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

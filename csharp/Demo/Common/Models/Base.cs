@@ -1,6 +1,6 @@
 using System;
 
-namespace Common
+namespace Demo.Common.Models
 {
     /// <summary>
     ///     <para>

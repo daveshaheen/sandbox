@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Common
+namespace Demo.Common.Models
 {
     /// <inheritdoc />
     /// <summary>
