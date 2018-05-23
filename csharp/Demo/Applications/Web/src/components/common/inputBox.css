@@ -1,0 +1,17 @@
+.inputBox {
+    display: inline-block;
+    margin-right: 0.5em;
+}
+
+.inputBox+.inputBox {
+    margin: 0 0.5em;
+}
+
+.inputBox input {
+    padding: 0.5em;
+    width: 300px;
+}
+
+.inputBox input:invalid {
+    background-color: pink;
+}

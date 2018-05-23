@@ -1,0 +1,22 @@
+.app main {
+  margin: 0 1em;
+}
+
+.app {
+  text-align: left;
+}
+
+.app-header {
+  background-color: #222;
+  padding: 1em;
+  color: white;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 1.5em;
+}
+
+.app-intro {
+  font-size: large;
+}
