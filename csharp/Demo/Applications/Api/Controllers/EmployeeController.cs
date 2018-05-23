@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using Demo.Common.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Demo.Applications.Api.Controllers
@@ -39,6 +42,33 @@ namespace Demo.Applications.Api.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpPost]
+        // rough mock up
+        public decimal GetPayInfo(Employee employee, int dependents)
+        {
+            if (employee == null) {
+                throw new ArgumentNullException(nameof(employee));
+            }
+
+            if (dependents < 0) {
+                throw new ArgumentOutOfRangeException(nameof(dependents));
+            }
+
+            var pay = 2000.00m;
+            var payPeriods = 26m;
+            var employeeBenefitsCost = 1000.00m;
+            var dependentBenfitsCost = 500.00m;
+            var discount = 1.0m;
+            if (
+                employee.FirstName.StartsWith("a", ignoreCase: true, culture: CultureInfo.CurrentCulture) ||
+                employee.LastName.StartsWith("a", ignoreCase: true, culture: CultureInfo.CurrentCulture))
+            {
+                discount = 0.9m;
+            }
+
+            return (pay * payPeriods) - ((employeeBenefitsCost + (dependentBenfitsCost * dependents)) * discount);
         }
     }
 }
