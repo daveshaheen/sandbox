@@ -2,15 +2,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Demo.Data.csproj", "{6996BF49-6801-4551-A24B-42EEA453EAD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Data", "Data\Demo.Data.csproj", "{6996BF49-6801-4551-A24B-42EEA453EAD8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Demo.Common.csproj", "{95F304C8-018F-499C-8BCD-A81CDD5A2BBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Common", "Common\Demo.Common.csproj", "{95F304C8-018F-499C-8BCD-A81CDD5A2BBB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Demo.Domain.csproj", "{1D2B580C-1850-47D5-9F62-5B1BD54E4BE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Domain", "Domain\Demo.Domain.csproj", "{1D2B580C-1850-47D5-9F62-5B1BD54E4BE0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{0F247464-E287-4C6C-92D4-6D4A0C44D52A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Applications\Api\Demo.Api.csproj", "{9E9BBAD2-49B0-41DB-B88B-03D3C89D5B88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Api", "Applications\Api\Demo.Api.csproj", "{9E9BBAD2-49B0-41DB-B88B-03D3C89D5B88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{B346B39E-03E8-4C3E-A8E0-68C6556DB862}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{610A90A1-13EE-4D8B-B088-72FE7391350D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{D1DD0D35-0B7B-4071-8D7D-F7A64581CC6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +45,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{6996BF49-6801-4551-A24B-42EEA453EAD8} = {B346B39E-03E8-4C3E-A8E0-68C6556DB862}
+		{95F304C8-018F-499C-8BCD-A81CDD5A2BBB} = {610A90A1-13EE-4D8B-B088-72FE7391350D}
+		{1D2B580C-1850-47D5-9F62-5B1BD54E4BE0} = {D1DD0D35-0B7B-4071-8D7D-F7A64581CC6B}
 		{9E9BBAD2-49B0-41DB-B88B-03D3C89D5B88} = {0F247464-E287-4C6C-92D4-6D4A0C44D52A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-				SolutionGuid = {D860732D-4ACF-4638-A080-ADB400A464AC}
 		SolutionGuid = {FE290391-236A-429B-984A-2809D44A77D5}
 	EndGlobalSection
 EndGlobal
