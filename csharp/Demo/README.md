@@ -2,18 +2,18 @@
 
 Missing pieces
 
-* hook up api and projects
-* seed database
-* powershell script
-* nginx
-* docker containers
-* logging
-* profiling
-* swagger
+* hook up api and projects, they're a mess
 * seed database
 * add unit tests
 * add regression tests
 * add end to end testing
-* css framework
+* powershell script for setup and tear down
+* nginx maybe for serving ui or just load balancing and using razor pages or mvc for ui
+* setup docker containers
+* logging (serilog, kibana, elasticsearch)
+* profiling and monitoring
+* swagger for documenting the api
+* css framework (material design or bootstrap with css modules)
 * continuous integration
-* browser support
+* browser support?
+* idk I'm probably forgetting something
