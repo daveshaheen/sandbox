@@ -17,4 +17,5 @@ Missing pieces
 * css framework (material design or bootstrap with css modules)
 * continuous integration
 * browser support?
-* idk I'm probably forgetting something. O yeah, check/refactor for performance
+* big O check/refactor for performance
+* idk I'm probably forgetting something
