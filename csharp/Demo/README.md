@@ -3,6 +3,7 @@
 Missing pieces
 
 * hook up api and projects, they're a mess
+* database connection string should be passed from api settings json file
 * seed database
 * add unit tests
 * add regression tests
@@ -16,4 +17,4 @@ Missing pieces
 * css framework (material design or bootstrap with css modules)
 * continuous integration
 * browser support?
-* idk I'm probably forgetting something
+* idk I'm probably forgetting something. O yeah, check/refactor for performance
