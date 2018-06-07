@@ -8,7 +8,7 @@
 
     <title>Test</title>
 
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
     <style>
         html {
@@ -19,35 +19,66 @@
 
 <body>
     <p>Hello World!</p>
-    <div class="g-signin2 cloak" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <div id="google-signin2"></div>
     <script>
-        function onSignIn(googleUser) {
+        function renderButton() {
+            gapi.signin2.render('google-signin2', {
+                'scope': 'profile email https://www.googleapis.com/auth/admin.directory.group.readonly',
+                'width': 240,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+            });
+        }
+
+        function onFailure(error) {
+            console.log(error);
+        }
+
+        function onSuccess(googleUser) {
+            window.googleUser = googleUser;
             // Useful data for your client-side scripts:
             var profile = googleUser.getBasicProfile();
             console.log('ID: ' + profile.getId()); // Don't send this directly to your server!
             console.log('Full Name: ' + profile.getName());
             console.log('Given Name: ' + profile.getGivenName());
             console.log('Family Name: ' + profile.getFamilyName());
-            console.log("Image URL: " + profile.getImageUrl());
-            console.log("Email: " + profile.getEmail());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
 
             // The ID token you need to pass to your backend:
             var id_token = googleUser.getAuthResponse().id_token;
             console.log('ID Token: ' + id_token);
 
+            var access_token = googleUser.getAuthResponse().access_token;
+            console.log('Access Token: ' + access_token);
+
             // Post
             var data = JSON.stringify({
-                token: id_token
+                access_token,
+                id_token
             });
 
-            var xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                console.log(JSON.parse(xhr.response));
-            }
+            var xhr1 = new XMLHttpRequest();
+            xhr1.onload = () => { console.log('xhr1', JSON.parse(xhr1.response)); };
+            xhr1.open('POST', '/api/v1/oauth2', true);
+            xhr1.setRequestHeader('Content-Type', 'application/json');
+            xhr1.send(data);
 
-            xhr.open('POST', '/api/v1/oauth2', true);
-            xhr.setRequestHeader('Content-type', 'application/json');
-            xhr.send(data);
+            // var xhr2 = new XMLHttpRequest();
+            // xhr2.onload = () => { console.log('xhr2', JSON.parse(xhr2.response)); };
+            // xhr2.open('GET', 'https://www.googleapis.com/admin/directory/v1/groups?userKey=' + profile.getId());
+            // xhr2.setRequestHeader('Content-Type', 'application/json');
+            // xhr2.setRequestHeader('Authorization', 'Bearer ' + access_token);
+            // xhr2.send();
+
+            // // var xhr3 = new XMLHttpRequest();
+            // xhr3.onload = () => { console.log('xhr3', JSON.parse(xhr3.response)); };
+            // xhr3.open('GET', 'https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + access_token);
+            // xhr3.setRequestHeader('Content-Type', 'application/json');
+            // xhr3.send(data);
         }
     </script>
 </body>
