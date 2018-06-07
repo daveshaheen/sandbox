@@ -41,8 +41,8 @@
             });
 
             var xhr = new XMLHttpRequest();
-            xhr.onload = function() {
-                console.log(xhr.response);
+            xhr.onload = function () {
+                console.log(JSON.parse(xhr.response));
             }
 
             xhr.open('POST', '/api/v1/oauth2', true);
