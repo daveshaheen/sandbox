@@ -1,3 +1,5 @@
+using App.Interfaces;
+using App.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +24,8 @@ namespace App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSingleton<IAzureMediaService, AzureMediaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
