@@ -27,6 +27,13 @@ namespace ScratchPad
             Console.WriteLine(myDictionary["B", 1]);
             Console.WriteLine(myDictionary["C"]);
             Console.WriteLine(myDictionary.Get("C", 1));
+
+            Console.WriteLine();
+            var numbers = new[] { 1, 12, 123, 1234, 12345, 123546, 1234567, 12345678, 123456789, -1, -12, -123, -1234, -12345, -123546, -1234567, -12345678, -123456789 };
+            foreach (var number in numbers)
+            {
+                Console.WriteLine(number.ToString("N0"));
+            }
         }
     }
 }
