@@ -2,7 +2,7 @@
 
 ## Requirements
 
-    Install dotnet core <https://www.microsoft.com/net>
+Install dotnet core <https://www.microsoft.com/net>
 
 ## Instructions
 
