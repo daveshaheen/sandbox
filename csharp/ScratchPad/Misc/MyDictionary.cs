@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("ScratchPad.Tests")]
 namespace ScratchPad.Misc
 {
     /// <inheritdoc />
