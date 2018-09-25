@@ -37,8 +37,7 @@ namespace ScratchPad.Misc
             }
             else
             {
-                var list = new List<TValue>();
-                list.Add(value);
+                var list = new List<TValue> { value };
                 base.Add(key, list);
             }
         }
