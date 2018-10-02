@@ -4,12 +4,11 @@ namespace Pixel.Tests
 {
     public class AnimationTest
     {
-        [Fact]
-        public void Test()
+        private readonly AnimationTestCase[] _tests;
+
+        public AnimationTest()
         {
-            var logger = new Logger();
-            var animation = new Animation(logger);
-            var tests = new[]
+            _tests = new[]
             {
                 new AnimationTestCase { Speed = 2, Init = "..R...." },
                 new AnimationTestCase { Speed = 3, Init = "RR..YRY" },
@@ -18,11 +17,27 @@ namespace Pixel.Tests
                 new AnimationTestCase { Speed = 1, Init = "..." },
                 new AnimationTestCase { Speed = 1, Init = "YRRY.YR.YRR.R.YRRY." }
             };
+        }
 
-            foreach (var test in tests)
+        [Fact]
+        public void TestResultStringOfInitialPositions()
+        {
+            foreach (var test in _tests)
             {
                 Assert.True(Animation.GetResultString(Animation.GetInitialPixelPositions(test.Init)) == test.Init);
             }
+        }
+
+        [Fact]
+        public void TestHandleAnimation()
+        {
+            var speed = _tests[0].Speed;
+            var init = _tests[0].Init;
+            var initialPixelPositions = Animation.GetInitialPixelPositions(init);
+            var handleAnimation = Animation.HandleAnimation(speed, initialPixelPositions);
+            var resultString = Animation.GetResultString(handleAnimation);
+
+            Assert.True(resultString == "....R..");
         }
     }
 
