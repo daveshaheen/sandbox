@@ -19,7 +19,6 @@ namespace Pixel
             foreach (var test in tests)
             {
                 animation.Animate(test.Speed, test.Init);
-                logger.Log();
             }
         }
     }
