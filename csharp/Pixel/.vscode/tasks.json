@@ -32,15 +32,29 @@
         {
             "label": "test with coverage",
             "command": "dotnet",
-            "type": "process",
+            "type": "shell",
             "args": [
                 "test",
                 "/p:CollectCoverage=true",
-                "/p:CoverletOutputFormat=lcov",
-                "/p:CoverletOutput=./lcov.info",
-                "${workspaceFolder}/Pixel.Tests/Pixel.Tests.csproj"
+                "/p:CoverletOutputFormat=opencover",
+                "/p:CoverletOutput=../coverage.opencover.xml",
+                "${workspaceFolder}/Pixel.Tests/Pixel.Tests.csproj",
+                "&&",
+                "DOTNET_ROOT=/opt/dotnet",
+                "$HOME/.dotnet/tools/reportgenerator",
+                "-reports:${workspaceFolder}/coverage.opencover.xml",
+                "-targetdir:${workspaceFolder}/coverage"
             ],
             "problemMatcher": "$msCompile"
-       }
+        },
+        {
+            "label": "open report",
+            "command": "xdg-open",
+            "type": "shell",
+            "args": [
+                "./coverage/index.htm"
+            ],
+            "dependsOn": "test with coverage"
+        }
     ]
 }
