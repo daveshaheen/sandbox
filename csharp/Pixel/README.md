@@ -18,19 +18,19 @@ Run `dotnet test Pixel.Tests` to test.
 
 1. Install Coverlet <https://github.com/tonerdo/coverlet/>
 
-        `dotnet tool install --global coverlet.console`
+        dotnet tool install --global coverlet.console
 
 2. Install Report Generator <https://github.com/danielpalme/ReportGenerator>
 
-        `dotnet tool install --global dotnet-reportgenerator-globaltool --version 4.0.0-rc6`
+        dotnet tool install --global dotnet-reportgenerator-globaltool --version 4.0.0-rc6
 
 3. Run dotnet test with coverlet to generate the code coverage stats.
 
-        `dotnet test Pixel.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage.opencover.xml`
+        dotnet test Pixel.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage.opencover.xml
 
 4. Run report generator to create the html report and then open a ./coverage/index.htm in a browser. For example, `xdg-open ./coverage/index.htm`
 
-        `reportgenerator -reports:coverage.opencover.xml -targetdir:./coverage`
+        reportgenerator -reports:coverage.opencover.xml -targetdir:./coverage
 
 ### Troubleshooting
 
