@@ -6,7 +6,7 @@ Install dotnet core <https://www.microsoft.com/net>
 
 ## Instructions
 
-Start in the `csharp` folder
+Start in the `csharp/Pixel` folder
 
 Run `dotnet build` to build.
 
