@@ -15,20 +15,33 @@ namespace Pixel
 
         public void Animate(int speed, string init)
         {
-            _logger.Log(init);
-
-            // check if we have all dots then return
             var isFinished = IsFinished(init);
-            if (isFinished) return;
+            if (isFinished)
+            {
+                _logger.Log(init);
+                _logger.Log();
+
+                return;
+            }
+
+            var results = WorkForDots(speed, init);
+            _logger.Log(results);
+        }
+
+        public static string WorkForDots(int speed, string init)
+        {
+            var results = new StringBuilder();
+            results.AppendLine(init);
 
             var newPositions = HandleAnimation(speed, GetInitialPixelPositions(init));
 
+            var isFinished = IsFinished(init);
             // print and loop until we have dots
             while (!isFinished)
             {
                 // print
                 var resultString = GetResultString(newPositions);
-                _logger.Log(resultString);
+                results.AppendLine(resultString);
 
                 // check if finished
                 isFinished = IsFinished(resultString);
@@ -37,6 +50,8 @@ namespace Pixel
                     newPositions = HandleAnimation(speed, newPositions);
                 }
             }
+
+            return results.ToString();
         }
 
         public static string GetResultString(Dictionary<int, IList<char>> positions)
